@@ -12,7 +12,7 @@ const { sequelize } = require('./models');
 server.listen(port, (req, res) => {
     console.log(`Server running at ${port} port !`)
 });
-// console.log(process.env.username);
+// console.log(process.env);
 
 
 sequelize
@@ -23,3 +23,7 @@ sequelize
     .catch((error) => {
         console.error('Unable to connect to the database:', error.message);
     });
+
+// sequelize.close().then((res) => {
+//     console.log(res);
+// })

@@ -1,23 +1,28 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "FOODZOONE",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "uri": "mysql://ucravp626ybm46pl:TQ1zK42KPLlvTMZZJL1B@km7shym6hobzstpama9-mysql.services.clever-cloud.com:3306/bkm7shym6hobzstpama9",
+
+    "username": "ucravp626ybm46pl",
+    "password": "TQ1zK42KPLlvTMZZJL1B",
+    "database": "bkm7shym6hobzstpama9",
+    "dialect": "mysql",
+    "port": "3306",
+    "host":"bkm7shym6hobzstpama9-mysql.services.clever-cloud.com"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "4358849_foodzone",
+    "password": "TQ1zK42KPLlvTMZZJL1B",
+    "database": "4358849_foodzone",
+    "host": "bkm7shym6hobzstpama9-mysql.services.clever-cloud.com",
+    "dialect": "mysql",
+    "port": "3306"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "4358849_foodzone",
+    "password": "heyguys12#",
+    "database": "4358849_foodzone",
+    "host": "fdb1028.awardspace.net",
+    "dialect": "mysql",
+    "port": "3306"
   }
 }
