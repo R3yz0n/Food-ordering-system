@@ -15,7 +15,10 @@ const Home = () => {
       <motion.section className="w-full grid grid-cols-1 md:grid-cols-2 gap-24  md:gap-4  ">
         <main className="flex flex-col items-start justify-start gap-6  px-3 ">
           <aside className="px-4 py-1 flex items-center justify-center gap-2 bg-orange-300 rounded-full border-dotted border-[2px] cursor-pointer">
-            <h3 className="text-lg font-semibold text-orange-600 ">
+            <h3
+              className="text-lg font-semibold text-orange-600 "
+              title="Sagar"
+            >
               Free Delivery
             </h3>
 
