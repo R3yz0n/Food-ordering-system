@@ -8,6 +8,7 @@ import { getAllItems, searchItems } from "../../store/product/productAction";
 import { clearFields } from "../../store/product/productSlice";
 import { motion } from "framer-motion";
 import { fadeInOut } from "../../animations";
+import MainLoader from "../../animations/MainLoader";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const Menu = () => {
 
   return (
     <main className=" pt-[90px]  pb-20 ">
+      {loading && <MainLoader />}
       <MenuCat
         handleFilter={handleFilter}
         category={category}

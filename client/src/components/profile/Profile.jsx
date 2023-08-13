@@ -14,13 +14,14 @@ import {
 import { clearFields } from "../../store/user/currUserSlice";
 import { toast } from "react-hot-toast";
 import { APIURL } from "../../utils/constants";
+import MainLoader from "../../animations/MainLoader";
 
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [isEditPic, setIsEditPic] = useState(false);
   const [file, setFile] = useState(null);
 
-  const { userData } = useSelector((state) => state.currUser);
+  const { userData, loading } = useSelector((state) => state.currUser);
   const initialValues = {
     userName: "",
     address: "",
@@ -103,6 +104,7 @@ const Profile = () => {
 
   return (
     <main className=" pt-28 sm:pt-40  w-full h-auto sm:h-screen pb-8 bg-gray-100 px-5 xs:px-8 md:px-0  select-text ">
+      {loading && <MainLoader />}
       <form
         className=" flex flex-col gap-3 sm:flex-row justify-center sm:gap-20  mx-auto py-10 px-5 bg-[rgb(240,245,254)] md:w-[750px] lg:w-[800px] rounded-lg  profilecard "
         onSubmit={handleSubmit}

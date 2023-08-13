@@ -12,6 +12,7 @@ import {
 } from "../../../store/order/orderAction";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { toast } from "react-hot-toast";
+import MainLoader from "../../../animations/MainLoader";
 
 const OrderInfo = ({ hideInfoModal, selectOrderId }) => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const OrderInfo = ({ hideInfoModal, selectOrderId }) => {
 
   return (
     <Overlay onClick={hideInfoModal}>
+      {loading && <MainLoader />}
       <section className="  z-50 w-[700px] h-[600px] bg-gray-200 rounded-md  pb-5 fixed top-0 bottom-0 m-auto left-0 right-0  ">
         {/* No orders */}
         <h2 className="text-lg lg:text-2xl font-semibold text-headingColor px-5  py-2 flex gap-4 w-fit bg-white rounded-tl-md  rounded-br-lg order-card  items-center z-20  ">

@@ -19,27 +19,32 @@ import FoodChart from "./FoodChart";
 import Sales from "./Sales";
 import LatestUsers from "./LatestUsers";
 import PopularFoods from "./PopularFoods";
+import MainLoader from "../../../animations/MainLoader";
 
 const Home = () => {
   const [userStats, setUserStats] = useState({});
   const [itemStats, setitemStats] = useState({});
   const [orderStats, setOrderStats] = useState({});
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const fetchDatas = async () => {
     try {
+      setLoading(true);
+
       await dispatch(getAllUsers()).unwrap();
       await dispatch(getAllItems()).unwrap();
       dispatch(clearProductFields());
       dispatch(clearFields());
-
       const userStats = await axios.get(`${APIURL}/latest/users`, getToken());
       setUserStats(userStats.data);
       const itemStats = await axios.get(`${APIURL}/latest/items`, getToken());
       setitemStats(itemStats.data);
       const orderStats = await axios.get(`${APIURL}/latest/orders`, getToken());
       setOrderStats(orderStats.data);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log(err.message);
       toast.error("Something went wrong.");
     }
@@ -53,6 +58,7 @@ const Home = () => {
 
   return (
     <section className=" pt-10 pb-8 ">
+      {loading && <MainLoader />}
       <aside className="w-full flex justify-evenly py-5 ">
         <Card
           title="Customers"

@@ -5,18 +5,25 @@ import { motion } from "framer-motion";
 import { straggerFadeInOut } from "../../../animations";
 import { toast } from "react-hot-toast";
 import { getToken } from "../../../store/getToken";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/opacity.css";
+import MainLoader from "../../../animations/MainLoader";
 
 const PopularFoods = () => {
+  const [loading, setLoading] = useState(false);
   const [foodData, setFoodData] = useState([]);
   const fetchPopularFoods = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         `${APIURL}/report/most-ordered`,
         getToken()
       );
       setFoodData(response.data);
       console.log(response);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error.message);
       toast.error(error.message);
     }
@@ -30,15 +37,16 @@ const PopularFoods = () => {
       <h2 className="text-2xl bg-orange-600 order-card  w-fit px-3 rounded-md py-1 font-semibold text-gray-200">
         Popular Foods
       </h2>
-      {}
 
       <div className=" grid grid-cols-2 gap-3 w-[470px]  mt-4 ">
+        {loading && <MainLoader />}
         {foodData?.map((food, i) => (
           <motion.div
             {...straggerFadeInOut(i)}
             className="bg-gray-50 flex items-center gap-2 px-2 rounded-lg order-card border-gray-300 border"
           >
-            <img
+            <LazyLoadImage
+              effect="opacity"
               className="w-20 h-20 p-1 cursor-pointer"
               src={`${APIURL}/file/${food.item.image}`}
               alt="food"

@@ -8,10 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { clearFields } from "../../store/order/orderSlice";
 import { motion } from "framer-motion";
 import { fadeInOut, straggerFadeInOut } from "../../animations";
+import MainLoader from "../../animations/MainLoader";
 
 const Order = ({ selectedOrderId }) => {
   const dispatch = useDispatch();
-  const { orderInfoById, error } = useSelector((state) => state.order);
+  const { orderInfoById, error, loading } = useSelector((state) => state.order);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ const Order = ({ selectedOrderId }) => {
 
   return (
     <section className=" md:w-[280px] md:hidden min-h-screen  bg-gray-200 rounded-md  pb-5 pt-28  px-4">
+      {loading && <MainLoader />}
       <h2 className="text-lg lg:text-2xl font-semibold text-headingColor px-5  py-2 flex gap-4 w-fit bg-white rounded-tl-md  rounded-br-lg order-card  items-center z-20   ml-5">
         <TbListDetails className="text-gray-200 text-xl lg:text-2xl h-7 w-7 opacity-80 bg-red-600 rounded-sm p-[2px]  tracking-wider" />
         Order Details
