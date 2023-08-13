@@ -46,7 +46,6 @@ const OrderInfo = ({ hideInfoModal, selectOrderId }) => {
 
   return (
     <Overlay onClick={hideInfoModal}>
-      {loading && <MainLoader />}
       <section className="  z-50 w-[700px] h-[600px] bg-gray-200 rounded-md  pb-5 fixed top-0 bottom-0 m-auto left-0 right-0  ">
         {/* No orders */}
         <h2 className="text-lg lg:text-2xl font-semibold text-headingColor px-5  py-2 flex gap-4 w-fit bg-white rounded-tl-md  rounded-br-lg order-card  items-center z-20  ">
@@ -147,32 +146,33 @@ const OrderInfo = ({ hideInfoModal, selectOrderId }) => {
         </aside>
 
         <aside className="grid sm:grid-cols-2  mt-4 px-3 rounded-md gap-3 overflow-y-auto max-h-[400px]  ">
-          {orderInfoById?.orderList?.map((orderItem, index) => (
-            <motion.div
-              {...straggerFadeInOut(index)}
-              className="flex items-center   bg-white rounded-md h-min  gap-3 p-[2px] "
-              key={index}
-            >
-              <img
-                src={`${APIURL}/file/${orderItem.image}`}
-                className=" h-24 object-contain  w-2/5  p-1"
-                alt="meal"
-              />
-              <div className="text-sm font-semibold text-headingColor truncate w-3/5">
-                <p className="truncate">{orderItem.name}</p>
-                <p className="text-[13px] text-textColor">
-                  <span className="text-sm  rounded-full text-headingColor">
-                    Rs.
-                  </span>{" "}
-                  {orderItem.price}
-                </p>
-                <p className="text-[13px] text-textColor">
-                  <span className="text-headingColor">Qty</span>{" "}
-                  {orderItem.quantity}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {!loading &&
+            orderInfoById?.orderList?.map((orderItem, index) => (
+              <motion.div
+                {...straggerFadeInOut(index)}
+                className="flex items-center   bg-white rounded-md h-min  gap-3 p-[2px] "
+                key={index}
+              >
+                <img
+                  src={`${APIURL}/file/${orderItem.image}`}
+                  className=" h-24 object-contain  w-2/5  p-1"
+                  alt="meal"
+                />
+                <div className="text-sm font-semibold text-headingColor truncate w-3/5">
+                  <p className="truncate">{orderItem.name}</p>
+                  <p className="text-[13px] text-textColor">
+                    <span className="text-sm  rounded-full text-headingColor">
+                      Rs.
+                    </span>{" "}
+                    {orderItem.price}
+                  </p>
+                  <p className="text-[13px] text-textColor">
+                    <span className="text-headingColor">Qty</span>{" "}
+                    {orderItem.quantity}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
         </aside>
       </section>
     </Overlay>
