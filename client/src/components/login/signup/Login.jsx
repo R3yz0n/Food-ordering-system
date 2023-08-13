@@ -100,7 +100,7 @@ const Login = () => {
 
           <FormInput
             placeholder="Password"
-            type="text"
+            type="password"
             icon={<FaLock className="text-xl text-textColor" />}
             value={values.password}
             onChange={handleChange}
